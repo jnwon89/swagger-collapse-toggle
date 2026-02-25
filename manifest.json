@@ -1,0 +1,25 @@
+{
+  "name": "Swagger Collapse Toggle Extension",
+  "description": "버튼 한 번으로 API 컨트롤러 섹션을 열고 닫자",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/icons8-color-16.png",
+      "32": "/images/icons8-color-32.png",
+      "48": "/images/icons8-color-48.png",
+      "128": "/images/icons8-color-128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/icons8-color-16.png",
+    "32": "/images/icons8-color-32.png",
+    "48": "/images/icons8-color-48.png",
+    "128": "/images/icons8-color-128.png"
+  }
+}

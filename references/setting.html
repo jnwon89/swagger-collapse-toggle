@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang=en>
+<meta charset=utf-8>
+<head>
+<style>
+    .form-field {
+        display: flex;
+        padding: 10px;
+        align-items: center;
+    }
+    .label {
+        min-width: 80px;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+    .form-input {
+        padding: 4px;
+        width: 120px;
+        height: 26px;
+    }
+</style>
+<script src="setting.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+<body>
+    <div class="form-field">
+        <span class="label">회사코드</span>
+        <input class="form-input" type="text" id="com_code">
+    </div>
+    <div class="form-field">
+        <span class="label">이름</span>
+        <input class="form-input" type="text" id="id">
+    </div>
+    <div class="form-field">
+        <span class="label">비밀번호</span>
+        <input class="form-input" type="password" id="passwd">
+    </div>
+    <div class="form-field">
+        <span class="label" id="chkResult"></span>
+        <button id="chkAccess">연결확인</button>
+        <span id="chkSpinner" style="padding:0 0 2px 5px; color:blue; display: none;"><i class="fa fa-spinner fa-spin"></i></span>
+    </div>
+    <hr>
+    <div class="form-field">
+        <span class="label">작업예약(1차)</span>
+        <input class="form-input" type="number" id="scheduleHour" style="width:34px">
+        <span class="label" style="margin-left:5px; min-width:auto">시</span>
+        <input class="form-input" type="number" id="scheduleMin" style="width:34px">
+        <span class="label" style="margin-left:5px; margin-right: 0; min-width:auto">분</span>
+    </div>
+    <div class="form-field">
+        <span class="label">작업예약(2차)</span>
+        <input class="form-input" type="number" id="scheduleHourSecond" style="width:34px">
+        <span class="label" style="margin-left:5px; min-width:auto">시</span>
+        <input class="form-input" type="number" id="scheduleMinSecond" style="width:34px">
+        <span class="label" style="margin-left:5px; margin-right: 0; min-width:auto">분</span>
+    </div>
+    <div class="form-field">
+        <button id="save">저장</button>
+    </div>
+</body>
+</html>
