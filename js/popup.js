@@ -14,4 +14,5 @@ $(document).ready(async () => {
 
 function toggleSectionsExpand() {
   document.querySelectorAll("section .opblock-tag .expand-operation").forEach(btn => btn.click());
+  document.querySelectorAll(".models-control").forEach(btn => btn.click());
 }

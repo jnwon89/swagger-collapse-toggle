@@ -1,7 +1,7 @@
 {
   "name": "Swagger Collapse Toggle Extension",
   "description": "버튼 한 번으로 API 컨트롤러 섹션을 열고 닫자",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "permissions": [
     "activeTab",
