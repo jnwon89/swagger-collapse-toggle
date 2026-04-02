@@ -1,4 +1,3 @@
-
 $(document).ready(async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 

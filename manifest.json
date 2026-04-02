@@ -1,11 +1,17 @@
 {
   "name": "Swagger Collapse Toggle Extension",
   "description": "버튼 한 번으로 API 컨트롤러 섹션을 열고 닫자",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "manifest_version": 3,
   "permissions": [
     "activeTab",
     "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://dev.llaputa.com/api/swagger-ui/index.html*", "http://localhost:8080/api/swagger-ui/index.html*"],
+      "js": ["js/jquery.min.js", "js/content-script.js"]
+    }
   ],
   "action": {
     "default_popup": "popup.html",
