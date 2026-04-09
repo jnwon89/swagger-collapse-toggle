@@ -28,7 +28,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 <body>
-    <img class="iconImg" id="icon_green" src="images/icons8-color-64.png" style="cursor: pointer; margin: 7px">
-    <img class="iconImg" id="icon_yellow" src="images/icons8-color-64-y.png" style="cursor: pointer; margin: 7px; display: none;">
+    <div class="form-field">
+        <div>
+            <!-- <img class="iconImg" id="icon_green" src="images/icons8-color-64.png" style="cursor: pointer; margin: 7px"> -->
+            <img class="iconImg" id="icon_yellow" src="images/icons8-color-64-y.png" style="cursor: pointer; margin: 7px;">
+        </div>
+        <div>
+            <div class="label" id="token_dashboard"></div>
+            <div style="display:flex; margin-top: 5px">
+                <button id="delete_token" style="display:none">토큰삭제</button>
+                <div style="margin: 2px 0 0 10px">
+                    토큰저장안함 <input type="checkbox" id="is_token_saveless">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
