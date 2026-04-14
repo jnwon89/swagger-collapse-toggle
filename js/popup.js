@@ -3,12 +3,14 @@ $(document).ready(async () => {
   let apiInfo = "";
   let tokenSavelessOption = false;
 
-  await chrome.storage.local.get(['apiInfo', 'tokenSavelessOption'], (item) => {
+  await chrome.storage.local.get(['apiInfo', 'rspTime', 'tokenSavelessOption'], (item) => {
     apiInfo = item.apiInfo == null || undefined? "" : item.apiInfo;
     tokenSavelessOption = item.tokenSavelessOption == null || undefined? false : item.tokenSavelessOption
+    const rspTime = item.rspTime;
+    const elapsed = Math.floor((Date.now() - rspTime)/60000);
 
     if(apiInfo != "") {
-      $('#token_dashboard').html('<span style="color:blue">Access 토큰 저장됨</span><br>(' + apiInfo + ')');
+      $('#token_dashboard').html('<span style="color:blue">Access 토큰 저장됨(발급: ' + elapsed + '분 전)</span><br>(' + apiInfo + ')');
       $('#delete_token').show();
     }
     $('#is_token_saveless').prop('checked', tokenSavelessOption);

@@ -1,11 +1,13 @@
 $(document).ready(async () => {
     let token = "";
+    let respTime = "";
 
-    await chrome.storage.local.get(['token'], (item) => {
+    await chrome.storage.local.get(['token', 'rspTime'], (item) => {
         token = item.token == null || undefined? "" : item.token;
+        respTime = item.rspTime;
     });
 
-    const RESPONSE_THRESHOLD = 5;
+    const RESPONSE_THRESHOLD = 10;
     const option = {
         attributes: false,
         characterData: false,
@@ -18,25 +20,26 @@ $(document).ready(async () => {
 
     function getTokenAndSet() {
         if(token != "") {
-            const healthCheck = setToken(token);
+            const healthCheck = setToken(token, respTime);
             if(healthCheck) token = "";
         }
         
         $('.responses-wrapper span.headerline').each((index, item) => {
             if(item.innerText.indexOf('date: ') >= 0) {
-                const responseOffset = (Date.now() - Date.parse(item.innerText.split('date: ')[1]))/1000;
+                const rspTime = Date.parse(item.innerText.split('date: ')[1]);
+                const responseOffset = (Date.now() - rspTime)/1000;
                 if(responseOffset < RESPONSE_THRESHOLD) {
                     const $opBlockRoot = $(item).closest('.opblock-post');
                     const apiNameString = $opBlockRoot.find('.opblock-summary-control').first().text();
                     if(apiNameString.indexOf('/login') > 0 && $opBlockRoot.find('.live-responses-table tbody td.response-col_status').first().text() == '200') {
                         chrome.storage.local.get(['tokenSavelessOption'], (item) => {
-                            tokenSavelessOption = item.tokenSavelessOption == null || undefined? false : item.tokenSavelessOption;
+                            const tokenSavelessOption = item.tokenSavelessOption == null || undefined? false : item.tokenSavelessOption;
                             const jsonString = $opBlockRoot.find('.live-responses-table code.language-json').text();
                             const accessToken = JSON.parse(jsonString).accessToken;
-                            const health = setToken(accessToken);
+                            const health = setToken(accessToken, rspTime);
                             if(!tokenSavelessOption && health) {
                                 const apiInfo = apiNameString.replace('\/', " \/").replace('\/login', "\/login ");
-                                chrome.storage.local.set({token: accessToken, apiInfo: apiInfo});
+                                chrome.storage.local.set({token: accessToken, apiInfo: apiInfo, rspTime: rspTime});
                             }
                         });
                     }
@@ -50,11 +53,12 @@ $(document).ready(async () => {
     })
 });
 
-function setToken(accessToken) {
+function setToken(accessToken, rspTime) {
     $('button.btn.authorize.unlocked').first().click();
     $('#auth-bearer-value').val(accessToken);
     $('#auth-bearer-value').focus();
-    const htmlToAppend = '<span style="color:salmon"><b>스페이스바를 한 번 누른 후 Authorize 버튼을 누르세요!</b></span>';
+    const elapsed = Math.floor((Date.now() - rspTime)/60000);
+    const htmlToAppend = '<span style="color:salmon"><b>스페이스바를 한 번 누른 후 Authorize 버튼을 누르세요! (토큰발급: ' + elapsed + '분 전)</b></span>';
     $('#auth-bearer-value').closest('.wrapper').find('label').first().html(htmlToAppend);
     return $('#auth-bearer-value').val() != undefined? true : false;
 }

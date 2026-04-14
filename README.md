@@ -9,3 +9,5 @@ Swagger Web UI 페이지에서 각 API 컨트롤러 섹션이 일괄 확장되�
 - 1.1.0
   * 로그인 API 호출 성공시 응답 Access Token을 자동으로 Authorization Header에 등록하는 기능 추가
   * Bearer Token 브라우저 저장/관리 기능 추가
+- 1.1.1
+  * 저장된 토큰의 발급시각 표시 기능 추가
